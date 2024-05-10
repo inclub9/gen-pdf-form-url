@@ -24,4 +24,4 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npx puppeteer browsers install chrome
-    - run: node bin/www
+    # - run: node bin/www
