@@ -24,4 +24,7 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npx puppeteer browsers install chrome
-    - run: node bin/www
+    - run: curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok
+    - run: node bin/www&
+    - run: ngrok config add-authtoken 7CXSRVhg25QjdrKfpLgaZ_3toyoCWrefyFLK8D512eU
+    - run: ngrok http 3002
