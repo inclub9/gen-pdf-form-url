@@ -22,7 +22,7 @@ router.get('/generate-pdf', async (req, res) => {
     await page.waitForSelector('body', { timeout: 30000 });
     await page.waitForFunction(() => {
       const text = document.querySelector('body').textContent;
-      return text.includes('How do I find');
+      return text.includes('รายการ');
     }, { timeout: 30000 });
     // sleep(10000)
     const pdfBuffer = await page.pdf({ format: 'A4', landscape: false, scale: 1 });
