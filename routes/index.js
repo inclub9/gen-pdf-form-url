@@ -19,12 +19,12 @@ router.get('/generate-pdf', async (req, res) => {
     const page = await browser.newPage();
     console.log(req.body.url);
     await page.goto(req.body.url);
-    // await page.waitForSelector('body', { timeout: 30000 });
-    // await page.waitForFunction(() => {
-    //   const text = document.querySelector('body').textContent;
-    //   return text.includes('How do I find');
-    // }, { timeout: 30000 });
-    sleep(5000)
+    await page.waitForSelector('body', { timeout: 30000 });
+    await page.waitForFunction(() => {
+      const text = document.querySelector('body').textContent;
+      return text.includes('How do I find');
+    }, { timeout: 30000 });
+    // sleep(10000)
     const pdfBuffer = await page.pdf({ format: 'A4', landscape: false, scale: 1 });
     await browser.close();
 
