@@ -17,11 +17,12 @@ router.get('/generate-pdf', async (req, res) => {
   try {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
+    console.log(req.body);
     await page.goto(req.body.url);
     await page.waitForSelector('body', { timeout: 30000 });
     await page.waitForFunction(() => {
       const text = document.querySelector('body').textContent;
-      return text.includes(req.body.textIncludes);
+      return text.includes('รายการ');
     }, { timeout: 30000 });
     // sleep(10000)
     const pdfBuffer = await page.pdf({ format: 'A4', landscape: false, scale: 1 });
